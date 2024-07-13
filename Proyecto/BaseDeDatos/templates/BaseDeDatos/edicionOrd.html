@@ -1,0 +1,89 @@
+{% extends 'core/base_index.html'%}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <br>
+        <a href="/ordenes/"><i class="fa fa-backward fa-2x" aria-hidden="true"></i></a>
+    <br>
+    <div class="col-md-4 offset-md-4">
+        <br>
+        <h3 style="background-color: #111414; color: white; text-align: center;">Editar Orden</h3>
+        
+        <div class="card">
+            <div class="card-body">
+                <form id="formulario" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="cod" name="cod" value="{{ordenes.cod_ord}}" class="form-control" readonly placeholder="Codigo de orden" minlength="1" maxlength="20" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="date" id="fecha" name="fecha" value="{{ordenes.fecha_entrega}}" class="form-control" placeholder="Fecha entrega" minlength="1"  required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="modelo" name="modelo" readonly value="{{ordenes.cod_maquina}}" class="form-control" placeholder="Modelo Maquina" minlength="1" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="cant" name="cant" value="{{ordenes.cant}}" class="form-control" placeholder="Cantidad" minlength="1" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="ruta" name="ruta" readonly value="{{ordenes.cod_area}}" class="form-control" placeholder="Ruta Trabajo" minlength="1"  required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="remi" name="remi" value="{{ordenes.remision_img}}" class="form-control"placeholder="Remision" minlength="1" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">    
+                        <button  onclick="validation()" type="button" class="btn btn-primary btn-block " style="width: 100%;">Guardar</button>
+                    </div>
+
+
+                    
+                </form>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function actualizar(){
+
+        var form = document.getElementById('formulario')
+
+        form.action = '/editarOrden/{{ordenes.cod_ord}}';
+        form.submit();
+        
+    }
+    
+    function validation(){
+        Swal.fire({
+            title: "Seguro?",
+            text: "Esta accion actualizara el registro",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              actualizar()
+            }else{
+                window.location.href = '/ordenes/';
+            }
+          });
+    }
+
+    
+    
+</script>
+
+{% endblock %}

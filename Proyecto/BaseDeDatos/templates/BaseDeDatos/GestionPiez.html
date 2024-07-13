@@ -1,0 +1,163 @@
+{% extends 'core/base_index.html'%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <div class="row">
+        
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> 
+            <br>
+            <a href="/ingreso/"><i class="fa fa-backward fa-2x" aria-hidden="true"></i></a>
+            <br>
+            <!-- mensajes emerjentes -->
+            {% if messages %}
+            {% for messages in messages %}
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                    });
+                    Toast.fire({
+                    icon: "success",
+                    title: "Operacion completada",
+                    html: "<strong class='text-dark'>{{messages}}</strong>",
+                    });
+            </script>
+
+            
+            {% endfor %}
+            {% endif %}
+            
+            <br>
+            <h2 style="background-color: #111414; color: white; text-align: center;">Agregar Piezas</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/RegistrarPieza/" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="cod" name="cod" class="form-control" placeholder="Codigo de la pieza" minlength="1" maxlength="20" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="nom" name="nom" class="form-control" placeholder="Nombre" minlength="1" maxlength="50" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="tipo" name="tipo" class="form-control" placeholder="Tipo de Material" minlength="1" maxlength="50" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="stok" name="stok" class="form-control" placeholder="Stock" minlength="1" maxlength="12" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <select id="cod_maquina" name="cod_maquina" class="form-control" required>
+                                <option disabled selected hidden>Maquinas</option>
+                                {% for m in maquinas %}
+                                    <option value="{{m.cod_maquina}}">{{m.nom_maquina}}</option>
+                                {% endfor %} 
+                            </select>
+                        </div>
+                        <br>
+                        <div class="form-group">    
+                            <button type="submit" class="btn btn-primary btn-block " style="width: 100%;">Guardar</button>
+                        </div>
+
+
+                        
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <br>
+            <br>
+            <h2 style="background-color: #111414; color: white; text-align: center;">Listado de Piezas</h2>
+            <div class="table-responsive" >
+                <table class="table table-striped " style="border: 1px solid black; padding: 5px;">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre</th>
+                            <th>Tipo de Material</th>
+                            <th>Stock</th>
+                            <th>Maquina</th>
+                            <th>Opciones</th>
+
+
+                        </tr>
+                    </thead>
+                    {% for p in piezas %}
+            <tbody>
+                <tr>
+                        <td class="align-middle">{{p.cod_pieza}}</td>
+                        <td class="align-middle">{{p.nom_pieza}}</td>
+                        <td class="align-middle">{{p.tipo_material}}</td>
+                        <td class="align-middle">{{p.stock}}</td>
+                        <td class="align-middle">{{p.cod_maquina}}</td>
+                        <td>
+                            <a href="/editarpie/{{p.cod_pieza}}" class="btn btn-info" title="Editar">
+                                <i class="bi bi-pencil-fill" ></i>
+                            </a>
+                            <button class="btn btn-danger" onclick='validation("/eliminarpieza/{{p.cod_pieza}}")'title="Eliminar">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>   
+                        </td>
+
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        function borrar(ruta){
+            location.href=ruta
+            
+        }
+        
+        function validation(ruta){
+            Swal.fire({
+                title: "Seguro?",
+                text: "Esta accion eliminara el registro permnanetemente",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, Borrar!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  borrar(ruta)
+                }
+              });
+        }
+        
+    </script>
+
+    
+</body>
+
+</html>
+{% endblock %}

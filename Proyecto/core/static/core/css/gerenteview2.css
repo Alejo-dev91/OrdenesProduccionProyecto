@@ -1,0 +1,131 @@
+.cont {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.col1 {
+    flex: 1;
+    background-color: #bdd1f0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagen-perfil {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.titulo {
+    margin-top: 10px;
+}
+
+.botones-col1 {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Alinea horizontalmente */
+}
+
+/* Estilos para los botones de col1 */
+.botones-col1 button {
+    margin-bottom: 10px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estilos para cuando se pasa el mouse sobre el botón de col1 */
+.botones-col1 button:hover {
+    background-color: #2980b9;
+}
+
+/**-----------------------------------------------------------------------------------*/
+
+.col2 {
+    flex: 4;
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+.col2 .formulario {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.col2 .campo {
+    margin-bottom: 15px;
+}
+
+.col2 .campo input[type="text"] {
+    width: calc(100% - 100px); /* El ancho del input es el ancho disponible menos el ancho del botón */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.col2 .campo button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.col2 .cliente-info { 
+    text-align: justify;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.col2 .cliente-info p {
+    margin: 5px 0;
+}
+
+.botones {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Estilos para los botones de col2 */
+.botones-col2 button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3498db;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* Elimina el margen derecho del último botón de col2 */
+.botones-col2 button:last-child {
+    margin-right: 0;
+}
+
+/* Estilos para cuando se pasa el mouse sobre el botón de col2 */
+.botones-col2 button:hover {
+    background-color: #2980b9;
+}

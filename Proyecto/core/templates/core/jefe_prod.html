@@ -1,0 +1,36 @@
+{% extends 'core/base_index.html'%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "css/gerente.css" %}'/>
+    <title>Document</title>
+</head>
+<body>
+    <div class="cont">
+        <div class="col1">
+            <div class="perfil">
+                <img src= '{% static "img\perfil.jpg"%}'class="imagen-perfil">
+                <div class="titulo">Jefe de Produccion</div>
+              </div>
+              <div class="botones">
+                <a href="/maquinas/"><button>Gestionar Maquina</button></a>
+                <a href="/piezas/"><button>Gestionar Pieza</button></a>
+                <a href="/ingreso/"><button>Salir</button></a>
+              </div>
+        </div>
+        <div class="col2">
+            <div class="saludo">¡Bienvenido,Jefe de Produccion!</div>
+            <div class="descripcion">
+                <p><strong>Perfil Profesional:</strong> [Descripción del perfil profesional del usuario]</p>
+                <p><strong>Experiencia Laboral:</strong> [Descripción de la experiencia laboral del usuario]</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+{% endblock %}

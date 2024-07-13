@@ -1,0 +1,167 @@
+{% extends 'core/base_index.html'%}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+    <div class="row">
+        
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"> 
+            <br>
+            <a href="/ingreso/"><i class="fa fa-backward fa-2x" aria-hidden="true"></i></a>
+            <br>
+            <!-- mensajes emerjentes -->
+            {% if messages %}
+            {% for messages in messages %}
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.onmouseenter = Swal.stopTimer;
+                        toast.onmouseleave = Swal.resumeTimer;
+                    }
+                    });
+                    Toast.fire({
+                    icon: "success",
+                    title: "Operacion completada",
+                    html: "<strong class='text-dark'>{{messages}}</strong>",
+                    });
+            </script>
+
+            
+            {% endfor %}
+            {% endif %}
+            
+            <br>
+            <h2 style="background-color: #111414; color: white; text-align: center;">Agregar Cliente</h2>
+            <div class="card">
+                <div class="card-body">
+                    <form action="/RegistrarCliente/" method="POST">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" id="cod" name="cod" class="form-control" placeholder="Identificacion" minlength="1" maxlength="20" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="txtnom" name="txtnom" class="form-control" placeholder="Nombres" minlength="1" maxlength="50" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="txtape" name="txtape" class="form-control" placeholder="Apellidos" minlength="1" maxlength="50" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="telefo" name="telefo" class="form-control" placeholder="Telefono" minlength="1" maxlength="12" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="text" id="dir" name="dir" class="form-control" placeholder="Dirección" minlength="1" maxlength="20" required>
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="E-mail" minlength="1" maxlength="50" required>
+                        </div>
+                        <br>
+                        <div class="form-group">    
+                            <button type="submit" class="btn btn-primary btn-block " style="width: 100%;">Guardar</button>
+                        </div>
+
+
+                        
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+        <br>
+        <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+            <br>
+            <br>
+            <h2 style="background-color: #111414; color: white; text-align: center;">Listado de Clientes</h2>
+            <div class="table-responsive" >
+                <table class="table table-striped " style="border: 1px solid black; padding: 5px;">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombres</th>
+                            <th>Apellidos</th>
+                            <th>Telefono</th>
+                            <th>Dirección</th>
+                            <th>E-mail</th>
+                            <th>Opciones</th>
+
+
+                        </tr>
+                    </thead>
+                    {% for c in clientes %}
+            <tbody>
+                <tr>
+                        <td>{{c.id_cli}}</td>
+                        <td>{{c.nom_cli}}</td>
+                        <td>{{c.apell_cli}}</td>
+                        <td>{{c.tel_cli}}</td>
+                        <td>{{c.dir_cli}}</td>
+                        <td>{{c.email_cli}}</td>
+                        <td>
+                            <a href="/editarCli/{{c.id_cli}}" class="btn btn-info">
+                                <i class="bi bi-pencil-fill" ></i>
+                            </a>
+                        </td>
+                        <td>
+                            
+                            <button class="btn btn-danger" onclick='validation("/eliminarcli/{{c.id_cli}}")'>
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button> 
+                        </td>
+
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+        function borrar(ruta){
+            location.href=ruta
+            
+        }
+        
+        function validation(ruta){
+            Swal.fire({
+                title: "Seguro?",
+                text: "Esta accion eliminara el registro permnanetemente",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Si, Borrar!"
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  borrar(ruta)
+                }
+              });
+        }
+        
+    </script>
+
+    
+</body>
+
+</html>
+{% endblock %}

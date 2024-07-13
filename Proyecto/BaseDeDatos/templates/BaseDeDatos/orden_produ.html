@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orden de Producción</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .btn {
+            display: block;
+            width: 20%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    {% for o in listado %} 
+    <div id="container">
+        <div style="display: flex;">
+            <div style="padding-right: 100px;">
+                <h3>Orden de Producción</h3>
+            </div>
+            <div>
+                <h3>N°: {{o.cod_ord}}</h3>
+            </div>
+        </div>
+        <form>
+            <div style="display: flex;" class="form-group">
+                <div style="padding-left: 5px; padding-right: 50px; flex:50%; border: 2px solid black;">
+                    <strong>Cliente:</strong>   {{o.cod_ped.id_cli.id_cli}}
+                </div>
+                <div style="padding-left: 10px; flex:50%; border: 2px solid black;">
+                   <strong>Fecha Pedido:</strong>  {{o.cod_ped.fecha_ped}}
+                </div>
+            </div>
+            <div style="display: flex;" class="form-group">
+                <div style="padding-left: 5px; padding-right: 50px; flex:50%; border: 2px solid black;">
+                    <strong>Maquina:</strong>   {{o.cod_maquina.nom_maquina}}
+                </div>
+                <div style="padding-left: 10px; flex:50%; border: 2px solid black;">
+                   <strong>Fecha de Orden:</strong>  {{o.fecha_entrega}}
+                </div>
+            </div>
+            <div style="display: flex;" class="form-group">
+                <div style="padding-left: 5px; padding-right: 50px; flex:33.3%; border: 2px solid black;">
+                    <strong>Cantidad:</strong> {{o.cod_ped.cantidad}}
+                </div>
+                <div style="padding-left: 10px; flex:33.3%; border: 2px solid black;">
+                   <strong>Valor unidad:</strong>  {{o.cod_ped.precio}}
+                </div>
+                <div style="padding-left: 10px; flex:33.3%; border: 2px solid black;">
+                    <strong>Total:</strong>  {{o.cod_ped.total}}
+                </div>
+            </div>
+            <div class="form-group">
+                <strong>Descripción :</strong>
+                <textarea rows="2">{{o.cod_ped.observaciones}}</textarea>
+            </div>
+            <div style="display: flex;" class="form-group">
+                <div style="padding-left: 5px; padding-right: 50px; flex:50%; border: 2px solid black;">
+                    <strong>Elaborado Por: </strong> Maria Ceballos<br><strong>Jefe de Producción</strong>
+                </div>
+                <div style="padding-left: 10px; flex:50%; border: 2px solid black;">
+                   <strong>Firma Cliente:</strong>______________
+                </div>
+                
+            </div>
+            <a style="text-decoration: none;text-align: center;" href="/mostrarOrden/"  class="btn btn-success" title="">Exportar PDF</a>
+            
+        </form>
+    </div>
+    {% endfor %}
+</body>
+</html>

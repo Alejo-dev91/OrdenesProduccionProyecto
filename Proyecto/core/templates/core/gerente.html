@@ -1,0 +1,59 @@
+{% extends 'core/base_index.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href='{% static "css/gerente.css" %}?v=6' />
+
+{% if user.is_authenticated %}
+    {% if group_name == "Gerente" %}
+        <div class="cont">
+            <div class="col1">
+                <div class="perfil">
+                    <img src="{% static 'img/c.jpg' %}" class="imagen-perfil">
+                    <div class="titulo">David Alvarez </div>
+                </div>
+                <div class="botones">
+                    <a href="/clientes/"><button>Gestionar Cliente</button></a>
+                    <a href="/pedidos/"><button>Gestionar Pedido</button></a>
+                    <a href="/salir/"><button>Salir</button></a>
+                </div>
+            </div>
+            <div class="col2">
+                <div class="saludo">¡Bienvenido, <a href="#">{{ user.username }}!</a></div>
+                <div class="descripcion">
+                    <p><strong>Perfil Profesional:</strong> Formación en administración de empresas y una vasta experiencia en la gestión de recursos humanos y financieros.</p>
+                    <p><strong>Experiencia Laboral:</strong> Gerente General en la Empresa Montajes y Herrajes LTDA (2018 - 2023): David ha supervisado las operaciones diarias, implementado estrategias de mejora continua y liderado un equipo de 50 empleados. Durante el tiempo laborado, la empresa alcanzo un aumento del 20% en la productividad y una reducción significativa de los costos operativos.</p>
+                </div>
+            </div>
+        </div>
+    {% elif group_name == "Jefe_produccion" %}
+        <div class="cont">
+            <div class="col1">
+                <div class="perfil">
+                    <img src="{% static 'img/d.jpg' %}" class="imagen-perfil">
+                    <div class="titulo">María Ceballos</div>
+                </div>
+                <div class="botones">
+                    <a href="/areas/"><button>Gestionar Area</button></a>
+                    <a href="/piezas/"><button>Gestionar Piezas</button></a>
+                    <a href="/ordenes/"><button>Gestionar Orden</button></a>
+                    <a href="/maquinas/"><button>Gestionar Máquina</button></a>
+                    <a href="/salir/"><button>Salir</button></a>
+                </div>
+            </div>
+            <div class="col2">
+                <div class="saludo">¡Bienvenido, <a href="#">{{ user.username }}!</a></div>
+                <div class="descripcion">
+                    <p><strong>Perfil Profesional:</strong> Formación en ingeniería industrial y una destacada experiencia en la optimización de procesos de fabricación.</p>
+                    <p><strong>Experiencia Laboral:</strong> Jefa de Producción en Industrias Tabares S.A.S (2017 - 2021): María ha liderado la producción en una planta con más de 100 empleados, mejorando la eficiencia en la línea de producción en un 25% mediante la implementación de prácticas de manufactura esbelta. Ha coordinado con los departamentos de calidad y mantenimiento para asegurar la entrega de productos de alta calidad.</p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>No tiene un grupo asignado o no está autenticado.</p>
+    {% endif %}
+{% else %}
+    <p>No está autenticado.</p>
+{% endif %}
+
+{% endblock %}

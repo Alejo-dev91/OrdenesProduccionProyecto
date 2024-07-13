@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilos Barra Inicial */
+.barraInicial {
+    width: auto;
+    height: 130px;
+    background-color: rgb(113, 180, 211);
+    background-position: auto;
+    margin: 0 auto;
+    display: flex;
+}
+
+#tituloPag {
+    display: flex;
+    align-items: center;
+    font-family: bold;
+}
+
+
+#tituloPag::before {
+    padding: 30px;
+    content: '\f085'; /* Código del icono de engranaje de Font Awesome */
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 1.5em;
+    color: #022b4a; /* Azul oscuro */
+    margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.barraInicial div {
+    flex: 1;
+    text-align: end;
+}
+
+
+.columnaIni {
+    width: calc(100%/2);
+}
+
+#espacio {
+    flex: 1;
+    text-align: center;
+}
+
+nav {
+    width: 90%;
+    margin: 0 auto;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    float: right;
+    margin: 30px 0 0 30px;
+    margin-top: 60px;
+}
+
+nav ul li {
+    margin-bottom: 20px;
+}
+
+.conte {
+    width: 100%;
+    height: calc(100vh - 190px);
+    background-image: url('https://larcotronic.com.ec/wp-content/uploads/2021/05/la-automatizacion-de-procesos-industriales-es-la-estrategia-para-aumentar-la-productividad.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.capa-color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(12, 12, 12, 0.548);
+}
+
+.texto-superpuesto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(255, 254, 254);
+    text-align: center;
+    text-shadow: 2px 2px 15px rgba(0, 0, 0);
+    padding: 20px;
+}
+
+
+
+/* Footer */
+footer {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0; /* Modifica el valor del padding para ajustar la altura del footer */
+    margin-top: auto;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.footer-column {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.footer-column h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.footer-column p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-column ul li {
+    margin-bottom: 8px;
+}
+
+.footer-column ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-column ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer-column ul li a i {
+    margin-right: 5px;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+}

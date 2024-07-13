@@ -1,0 +1,79 @@
+{% extends 'core/base_index.html'%}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <br>
+        <a href="/areas/"><i class="fa fa-backward fa-2x" aria-hidden="true"></i></a>
+    <br>
+    <div class="col-md-4 offset-md-4">
+        <br>
+        <h3 style="background-color: #111414; color: white; text-align: center;">Editar Area</h3>
+        
+        <div class="card">
+            <div class="card-body">
+                <form id="formulario" method="POST">{% csrf_token %}
+                    <br>
+                    <div class="form-group">
+                        <input type="text"  readonly id="cod" name="cod" value="{{areas.cod_area}}" class="form-control" placeholder="Codigo del Area" minlength="1" maxlength="20" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="nom" name="nom" value="{{areas.nombre}}" class="form-control" placeholder="Nombre del Area" minlength="1" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="email" id="email" name="email" value="{{areas.email_area}}" class="form-control" placeholder="Email del Area" minlength="1" maxlength="50" required>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="form-group">    
+                        <button  onclick="validation()" type="button" class="btn btn-primary btn-block " style="width: 100%;">Guardar</button>
+                    </div>
+
+
+                    
+                </form>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function actualizar(){
+
+        var form = document.getElementById('formulario')
+
+        form.action = '/editarArea/';
+        form.submit();
+        
+    }
+    
+    function validation(){
+        Swal.fire({
+            title: "Seguro?",
+            text: "Esta accion actualizara el registro",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              actualizar()
+            }else{
+                window.location.href = '/areas/';
+            }
+          });
+    }
+
+    
+    
+</script>
+
+{% endblock %}

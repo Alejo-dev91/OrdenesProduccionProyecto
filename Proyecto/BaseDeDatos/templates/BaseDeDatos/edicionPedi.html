@@ -1,0 +1,90 @@
+{% extends 'core/base_index.html'%}
+{% load static %}
+{% block content %}
+
+<div class="row">
+    <br>
+        <a href="/pedidos/"><i class="fa fa-backward fa-2x" aria-hidden="true"></i></a>
+    <br>
+    <div class="col-md-4 offset-md-4">
+        <br>
+        <h3 style="background-color: #111414; color: white; text-align: center;">Editar Pedido</h3>
+        
+        <div class="card">
+            <div class="card-body">
+                <form id="formulario" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" readonly id="cod" name="cod" value="{{pedidos.cod_ped}}" class="form-control" placeholder="Codigo de Pedido" minlength="1" maxlength="20" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="date" id="fecha" name="fecha" value="{{pedidos.fecha_ped}}" class="form-control" placeholder="Fecha" minlength="1"  required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="descrip" name="descrip" value="{{pedidos.cod_maquina}}" class="form-control" placeholder="Descripción" minlength="1" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="precio" name="precio" value="{{pedidos.precio}}" class="form-control" placeholder="Precio" minlength="1"  required>
+                    </div>
+                    
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="cant" name="cant" value="{{pedidos.cantidad}}" class="form-control" placeholder="Cantidad" minlength="1" maxlength="100" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <input type="text" id="observ" name="observ" value="{{pedidos.observaciones}}" class="form-control"placeholder="Observaciones" minlength="1" maxlength="50" required>
+                    </div>
+                    <br>
+                    <div class="form-group">    
+                        <button  onclick="validation()" type="button" class="btn btn-primary btn-block " style="width: 100%;">Guardar</button>
+                    </div>
+
+
+                    
+                </form>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+    function actualizar(){
+
+        var form = document.getElementById('formulario')
+
+        form.action = '/editarPedido/{{pedidos.cod_ped}}';
+        form.submit();
+        
+    }
+    
+    function validation(){
+        Swal.fire({
+            title: "Seguro?",
+            text: "Esta accion actualizara el registro",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Si!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              actualizar()
+            }else{
+                window.location.href = '/pedidos/';
+            }
+          });
+    }
+
+    
+    
+</script>
+
+{% endblock %}

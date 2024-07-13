@@ -1,0 +1,53 @@
+{% extends 'core/base_index.html'%}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <div style="display: flex;padding-top: 10px;">
+        <div style="padding-right: 1150px;">
+            <a href="/pedidos/"><i class="fa fa-backward fa-2x" aria-hidden="true"></i></a>
+        </div>
+        <div>
+            <!--Se uso la libreria xhtml2pdf  para el PDf-->
+            <a href="/listarClientes/"  class="btn btn-success" title="Exportar PDF"><i style="color: white;" class="fa fa-print" aria-hidden="true" ></i></a>
+        </div>
+    </div>
+    
+    <h3>Listado de Pedidos por Cliente</h3>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Codigo del Pedido</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Telefono</th>
+                <th>Producto</th>
+                <th>Valor Unitario</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pedido in pedidos %}
+            <tr>
+                <td>{{pedido.cod_ped}}</td>
+                <td>{{pedido.fecha_ped}}</td>
+                <td>{{pedido.id_cli.nom_cli}}</td>
+                <td>{{pedido.id_cli.tel_cli}}</td>
+                <td>{{pedido.cod_maquina.nom_maquina}}</td>
+                <td>{{pedido.precio}}</td>
+                <td>{{pedido.cantidad}}</td>
+                <td>{{pedido.total}}</td>
+                <td></td>
+                
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProOnliPc Bootstrap Template</title>
+</head>
+
+<body>
+  {%block body %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="portfolios">
+          <div class="text-center">
+            <h2>Acerca de los Desarrolladores</h2>
+            <p>Conozca más sobre los desarrolladores detrás de nuestro sitio web, un equipo apasionado por crear soluciones digitales innovadoras y efectivas.
+            </p>
+
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <a href='{% static "core/img/alejo.jpeg"%}' class="flipLightBox">
+            <img src='{% static "core/img/alejo.jpeg" %}' width="250" height="250" alt="1"
+            style="transition: transform 0.3s ease-in-out; display: inline-block; margin: 10px;"
+            onmouseover="this.style.transform='translateY(-10px)';" 
+            onmouseout="this.style.transform='translateY(0px)';" />
+						<span><h4>Alejandro Morales</h4><br /> Estudiante del Sena en  Analisis y desarrollo de software
+              Conocimientos basicos en HTML, CSS, JavaScript, y Python</span>
+					</a>
+          <a href='{% static "core/img/wil.jpeg"%}' class="flipLightBox">
+						<img src='{% static "core/img/wil.jpeg" %}' width="250" height="250" alt="2"
+                         style="transition: transform 0.3s ease-in-out; display: inline-block; margin: 10px;"
+                         onmouseover="this.style.transform='translateY(-10px)';" 
+                         onmouseout="this.style.transform='translateY(0px)';" />
+						<span><h4>William Montoya</h4><br /> Estudiante del Sena en  Analisis y desarrollo de software
+              Conocimientos basicos en HTML, CSS, JavaScript, y Python</span>
+					</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+</body>
+
+</html>
+{% endblock %}

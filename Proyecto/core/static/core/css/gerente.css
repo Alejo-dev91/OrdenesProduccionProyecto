@@ -1,0 +1,83 @@
+*{
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cont{
+    height: 100%;
+    display: flex; /* Para usar flexbox */
+    justify-content: space-between; /* Distribuir divs horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+
+}
+
+.col1 {
+    flex: 1; /* Toma el doble de espacio que el otro */
+    background-color: #bdd1f0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .imagen-perfil {
+    border-radius: 50%; /* Hace la imagen redonda */
+    width: 100px; /* Ajusta el tamaño según tu preferencia */
+    height: 100px; /* Ajusta el tamaño según tu preferencia */
+  }
+  
+  .titulo {
+    margin-top: 10px;
+  }
+  
+  .botones {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Estilos para los botones */
+  .botones button {
+    margin-bottom: 10px; /* Espacio entre los botones */
+    padding: 10px 30px; /* Ajusta el espacio dentro del botón */
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db; /* Azul */
+    color: #fff; /* Texto blanco */
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+  }
+  
+  /* Estilos para cuando se pasa el mouse sobre el botón */
+  .botones button:hover {
+    background-color: #2980b9; /* Azul más oscuro */
+  }
+
+/**-----------------------------------------------------------------------------------*/
+  .col2 {
+    flex: 4; /* Toma la mitad de espacio que el otro */
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+  }
+  .saludo {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .descripcion {
+    text-align: left;
+  }
+  
+  .descripcion p {
+    margin-bottom: 10px;
+  }
